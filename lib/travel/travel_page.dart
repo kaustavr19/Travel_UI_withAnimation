@@ -6,9 +6,18 @@ class TravelPage extends StatefulWidget {
   _TravelPageState createState() => _TravelPageState();
 }
 
-class _TravelPageState extends State<TravelPage> {
+class _TravelPageState extends State<TravelPage> with TickerProviderStateMixin {
   final imgurl =
       "https://avatars.githubusercontent.com/u/54073521?s=460&u=435d63cc8d05543a9864c2d5948901294ba522b9&v=4";
+  TabController _tabController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = TabController(vsync: this, length: 4);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +72,43 @@ class _TravelPageState extends State<TravelPage> {
               .cornerRadius(10)
               .p16()
         ].column())
-            .makeCentered(),
+            .makeCentered()
+            .h32(context),
+        ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          child: VxBox(
+              child: VStack([
+            TabBar(
+              controller: _tabController,
+              indicatorColor: Colors.deepOrangeAccent,
+              indicatorSize: TabBarIndicatorSize.label,
+              labelColor: Vx.teal500,
+              unselectedLabelColor: Vx.gray400,
+              labelPadding: Vx.m16,
+              tabs: [
+                Icon(
+                  Icons.map,
+                  size: 30,
+                ),
+                Icon(
+                  Icons.pin_drop,
+                  size: 30,
+                ),
+                Icon(
+                  Icons.restaurant,
+                  size: 30,
+                ),
+                Icon(
+                  Icons.person,
+                  size: 30,
+                )
+              ],
+            )
+          ])).white.make(),
+        ).expand()
       ]),
     );
   }

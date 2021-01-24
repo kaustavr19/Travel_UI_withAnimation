@@ -11,4 +11,5 @@ class Coolors {
   static Color yellow2 = Color(0xff866919);
   static Color green1 = Color(0xff3e9536);
   static Color green2 = Color(0xff2b5727);
+  static Color orangish = Color(0xffffac00);
 }
